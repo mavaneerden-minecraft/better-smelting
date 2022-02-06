@@ -1,0 +1,27 @@
+@tag minecraft:load
+
+# Author: PeerHeer
+#
+# Executes on #minecraft:load
+
+define function load_datapack {
+    # Author: PeerHeer
+    #
+    # Load the datapack.
+    
+    # Schedule the ticking functions for idle markers
+    
+    # Send user feedback
+    tellraw @a ${printDatapackLoaded()}
+}
+
+# Check if PeerHeer Utils is installed
+function peerheer.better_smelting:shared/utils_installed
+
+# Load the datapack if Utils is loaded.
+if score ${utilsLoaded} ${globalObjective} matches 1 function /load_datapack
+
+
+
+
+

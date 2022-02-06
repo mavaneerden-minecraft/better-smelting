@@ -1,0 +1,86 @@
+@on compile
+
+#########
+# LOCAL #
+#########
+
+# Metadata
+var datapackName = "Better Smelting"
+var datapackDescription = "Better Smelting datapack for Minecraft 1.17+ by PeerHeer"
+
+# Namespace and storage
+global var shortNamespace = "btrsmlt"
+global var storageBase = resource<peerheer:better_smelting>
+
+# Objectives
+
+# Fake players
+global var foundBlock = entity<#btrsmlt.entity.found_block>
+
+##########
+# GLOBAL #
+##########
+
+# Metadata
+var utilsName = "PeerHeer Utils"
+
+# Objectives
+global var globalObjective = "peerheer.global"
+define objective $globalObjective
+global var constObjective = "peerheer.const"
+define objective $constObjective
+global var tempObjective = "peerheer.temp"
+define objective $tempObjective
+
+# Entities
+global var armorStandEntity = entity<9235d322-727a-47da-8240-3ba3b1ec2502>
+
+# Fake players
+global var utilsLoaded = entity<#utils.loaded>
+
+# Coordinates
+global var shulkerBoxCoordinates = coordinates<-30000000 0 8000>
+global var signCoordinates = coordinates<-29999999 0 8000>
+
+# Tellraws
+var printMessage = function(prefix, message) {
+    for(entry in message) {
+        eval prefix.add(entry)
+    }
+    
+    return new text_component(prefix)
+}
+global var printInfo = function(message) {
+    var prefix = ["", {"text": "[", "color": "dark_green"},{"text":"INFO","color":"green"},{"text":"] ","color":"dark_green"}]
+    return printMessage(prefix, message)       
+}
+global var printError = function(message) {
+    var prefix = ["", {"text": "[", "color": "dark_red"},{"text":"ERROR","color":"red"},{"text":"] ","color":"dark_red"}]
+    return printMessage(prefix, message)
+}
+global var printScore = function(prefix, player, objective) {
+    var score = ["", {"score": {"name": player, "objective": objective}}]
+    return printMessage([prefix], score)
+}
+
+# Hard-coded tellraws
+global var printUtilsNotFound = function() {
+    return printError([{"text":"You need to install the "},{"text": utilsName,"color":"yellow"},{"text":" datapack to make "},{"text": datapackName,"color":"yellow"},{"text":" work!"}])
+}
+global var printDatapackLoaded = function() {
+    return printInfo([{"text":"Loaded datapack "},{"text": datapackName,"color":"yellow","hoverEvent":{"action":"show_text","value":["",{"text": datapackName},{"text":"\n"},{"text": datapackDescription}]}}])
+}
+
+define function utils_installed {
+    # Author: PeerHeer
+    #
+    # Check if PeerHeer Utils is installed by calling a function from it.
+    
+    set ${utilsLoaded}->${globalObjective} = 0
+    
+    # Call the function from PeerHeer Utils
+    /function peerheer.utils:is_loaded
+    
+    # Print an error if the PeerHeer Utils pack was not found
+    if score ${utilsLoaded} ${globalObjective} matches 0 run tellraw @a ${printUtilsNotFound()}
+}

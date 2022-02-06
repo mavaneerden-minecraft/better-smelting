@@ -1,0 +1,2 @@
+set $foundBlock->$globalObjective = 1
+tellraw @a "Found block!"

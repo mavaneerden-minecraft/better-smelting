@@ -1,0 +1,21 @@
+{
+  "input-resources": "(automatically selected by Trident-UI)",
+  "output": {
+    "directories": {
+      "data-pack": "C:\\Users\\Marco\\Documents\\Minecraft\\Trident\\Projects\\Better Smelting 1.17+\\out\\Better Smelting 1.17+",
+      "resource-pack": "C:\\Users\\Marco\\Documents\\Minecraft\\Trident\\Projects\\Better Smelting 1.17+\\out\\Better Smelting 1.17+-resources.zip"
+    },
+    "clean-directories": {
+      "data-pack": false,
+      "resource-pack": false
+    },
+    "export-comments": true,
+    "export-gamelog": true
+  },
+  "trident-ui": {
+    "actions": {
+      "pre": [],
+      "post": []
+    }
+  }
+}

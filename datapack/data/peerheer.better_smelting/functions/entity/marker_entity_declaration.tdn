@@ -1,0 +1,17 @@
+@on compile
+
+define entity marker minecraft:marker {
+    default nbt {
+    }
+}
+
+define entity component marker_idle {}
+
+define entity component marker_busy {}
+
+define entity component marker_furnace {}
+
+define entity component marker_blast_furnace {}
+
+define entity component marker_smoker {}
+

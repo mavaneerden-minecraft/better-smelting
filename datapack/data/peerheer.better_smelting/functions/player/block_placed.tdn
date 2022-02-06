@@ -1,0 +1,45 @@
+@on compile
+@require peerheer.better_smelting:shared
+@require peerheer.better_smelting:player/find_block
+
+define function placed_furnace_advancement {
+    # Author: PeerHeer
+    # Handle the furnace_placed advancement.
+
+    # Revoke the advancement
+    advancement revoke @s only peerheer.better_smelting:block_placed/furnace_placed
+
+    # Set found_block to 0 to indicate start of search
+    set $foundBlock->$globalObjective = 0
+
+    # Start finding the block
+    function peerheer.better_smelting:player/find_block/coords0
+}
+
+define function placed_blast_furnace_advancement {
+    # Author: PeerHeer
+    # Handle the blasting_furnace_placed advancement.
+
+    # Revoke the advancement
+    advancement revoke @s only peerheer.better_smelting:block_placed/blast_furnace_placed
+
+    # Set found_block to 0 to indicate start of search
+    set $foundBlock->$globalObjective = 0
+
+    # Start finding the block
+    function peerheer.better_smelting:player/find_block/coords0
+}
+
+define function placed_smoker_advancement {
+    # Author: PeerHeer
+    # Handle the smoker_placed advancement.
+
+    # Revoke the advancement
+    advancement revoke @s only peerheer.better_smelting:block_placed/smoker_placed
+
+    # Set found_block to 0 to indicate start of search
+    set $foundBlock->$globalObjective = 0
+
+    # Start finding the block
+    function peerheer.better_smelting:player/find_block/coords0
+}
